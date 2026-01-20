@@ -1,0 +1,73 @@
+```xml
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.madhub.instagramuserscrapin">
+
+    <!-- 
+    This AndroidManifest.xml file configures the entire app. 
+    It includes necessary permissions, registers components, 
+    and maintains the technical architecture for an automation tool. 
+    Careful consideration given to permissions that enable seamless 
+    interaction with the Android system and other applications.
+    -->
+
+    <!-- 
+    Required permissions for network operations to enable automated interactions 
+    with social media platforms like Instagram, ensuring a reliable connection 
+    to cloud phones or emulators for 24/7 operations.
+    -->
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
+    <!-- 
+    READ_EXTERNAL_STORAGE and WRITE_EXTERNAL_STORAGE permissions are necessary 
+    for managing media files that may be uploaded or processed by the automation tool. 
+    This is a best practice to ensure access to user media when needed.
+    -->
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        
+        <!-- 
+        The main activity of the application which serves as the entry point.
+        The MainActivity class manages the user interface components and handles 
+        user interactions with the tool's core functionalities.
+        -->
+        <activity android:name=".MainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <!-- 
+        The AutomationService is registered to handle background tasks.
+        This service is essential for enabling continuous operations without user intervention, 
+        which aligns with the technical architecture of the MadHub product.
+        -->
+        <service
+            android:name=".AutomationService"
+            android:enabled="true"
+            android:exported="false">
+            <!-- 
+            By defining the service here, we can manage tasks such as scheduling and 
+            automating interactions efficiently, leveraging Android's background processing capabilities.
+            -->
+        </service>
+
+    </application>
+
+</manifest>
+```
+
+### Explanation:
+- **Technical Architecture**: The manifest structure follows standard Android practices, ensuring that all components are properly declared and permissions are granted for the necessary functionalities.
+- **Permissions**: The `INTERNET` and `ACCESS_NETWORK_STATE` permissions ensure that the application can connect to the internet and monitor its network state, which is crucial for any automation tool interacting with online platforms. The storage permissions allow for file access when handling media.
+- **Main Activity and Service Registration**: The `MainActivity` serves as the user interface and entry point for the application, while the `AutomationService` handles background tasks to support automated operations. This division adheres to the best practice of separating concerns in application architecture.
